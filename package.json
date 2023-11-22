@@ -1,0 +1,25 @@
+{
+  "name": "verdicts-bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Konard/verdicts-bot.git"
+  },
+  "keywords": [
+    "law"
+  ],
+  "author": "",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Konard/verdicts-bot/issues"
+  },
+  "homepage": "https://github.com/Konard/verdicts-bot#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.64.0"
+  }
+}
