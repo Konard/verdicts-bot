@@ -12,15 +12,15 @@ function getVerdict(facts) {
     let damageValue = theft.damageValue;
 
     if (damageValue < 5000) {
-      verdict = 'The suspect can be fined up to 80,000 rubles, or up to six months\' salary, or a compensatory amount of up to six months\' earnings, ' +
-      'or they may be sentenced to obligatory labour for up to 360 hours, or correctional labour for up to a year, or deprivation of liberty for up to two years.';
+      verdict = 'Подозреваемому может быть назначен штраф до 80 000 рублей, либо зарплата или другой доход за период до шести месяцев, ' +
+      'либо обязательные работы на срок до 360 часов, либо исправительные работы до одного года, либо лишение свободы до двух лет.';
     } else if (damageValue >= 5000 && damageValue <= 250000) {
-      verdict = 'The suspect can be fined up to 200,000 rubles, or operators can be subjected to forced labor for up to 5 years, or sentenced for up to 5 years.';
+      verdict = 'Подозреваемому может быть назначен штраф до 200 000 рублей, или могут быть вынуждены работать до 5 лет, или заключён на срок до 5 лет.';
     } else if (damageValue > 250000 && damageValue <= 1000000) {
-      verdict = 'The suspect can be fined up to 500,000 rubles, or be subjected to a prison term of up to 6 years, with a fine of up to 80,000 rubles, or a compensatory amount for up to 6 months.' +
-      ' and restriction of freedom for up to one and a half years.';
+      verdict = 'Подозреваемому может быть назначен штраф до 500 000 рублей, либо может быть приговорен к тюремному заключению до 6 лет, с наложением штрафа до 80 000 рублей, или компенсация на период до 6 месяцев. ' +
+      'и ограничение свободы на срок до полутора лет.';
     } else if (damageValue > 1000000) {
-      verdict = 'The suspect can be sentenced to up to ten years in prison, or fined up to one million rubles and restricted freedom for up to two years.';
+      verdict = 'Подозреваемый может быть приговорен к тюремному заключению на срок до десяти лет, либо штраф до одного миллиона рублей и ограничение свободы на срок до двух лет.';
     }
   }
 
@@ -29,11 +29,11 @@ function getVerdict(facts) {
     let hasOrganizer = participants.hasOrganizer;
 
     if (participantCount <= 1) {
-      verdict += '\nThis is an individual responsibility.';
+      verdict += '\nЭто индивидуальная ответственность.';
     } else if (participantCount > 1 && !hasOrganizer) {
-      verdict += '\nThis is a group responsibility.';
+      verdict += '\nЭто групповая ответственность.';
     } else if (participantCount > 1 && hasOrganizer) {
-      verdict += '\nThis is an organized group responsibility.';
+      verdict += '\nЭто ответственность организованной группы.';
     }
   }
 
@@ -145,7 +145,7 @@ function start(token) {
       }
   
       const verdict = getVerdict([chatState.theft, chatState.participants]);
-      bot.sendMessage(chatId, `Вероятный вердикт на основе представленных фактов:\n${verdict}`);
+      bot.sendMessage(chatId, `Вероятный вердикт на основе представленных фактов:\n\n${verdict}\n\nВведите команду /restart чтобы начать заново.`);
     };
   });
 }
