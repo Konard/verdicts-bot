@@ -4,9 +4,30 @@ const fs = require('fs');
 function start(token) {
   const bot = new TelegramBot(token, {polling: true});
 
+  // bot.onText(/\/start/, (msg) => {
+  //   const chatId = msg.chat.id;
+  //   bot.sendMessage(chatId, 'Добро пожаловать! Этот бот помогает оценивать вердикт по фактам дела. Введите команду /facts, чтобы ввести факты дела');
+
+  //   const chatId = msg.chat.id;
+  //   state[chatId] = { step: `` };
+  // });
+
   bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
-    bot.sendMessage(chatId, 'Добро пожаловать! Этот бот помогает оценивать вердикт по фактам дела. Введите команду /facts, чтобы ввести факты дела');
+    state[chatId] = {
+      step: "theft",
+      theft: {},
+      participants: {},
+    };
+    bot.sendMessage(
+      chatId,
+      "Давайте определим ожидаемый вердикт по 158 статьей УК РФ. Сначала введите ущерб от кражи числом в рублях. Например: 3000"
+    );
+  });
+
+  bot.onText(/\/restart/, (msg) => {
+    const chatId = msg.chat.id;
+    state[chatId] = null;
   });
 
   // bot.onText(/\/facts/, (msg) => {
