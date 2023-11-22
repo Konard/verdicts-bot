@@ -1,6 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 
+const state = {};
+
 function start(token) {
   const bot = new TelegramBot(token, {polling: true});
 
@@ -12,7 +14,7 @@ function start(token) {
   //   state[chatId] = { step: `` };
   // });
 
-  bot.onText(/\/start/, (msg) => {
+  bot.onText(/\/(re)?start/, (msg) => {
     const chatId = msg.chat.id;
     state[chatId] = {
       step: "theft",
@@ -25,10 +27,6 @@ function start(token) {
     );
   });
 
-  bot.onText(/\/restart/, (msg) => {
-    const chatId = msg.chat.id;
-    state[chatId] = null;
-  });
 
   // bot.onText(/\/facts/, (msg) => {
   //   const chatId = msg.chat.id;
